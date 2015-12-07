@@ -5,25 +5,24 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by Java Developer on 07.12.2015.
+ * Service to do next:
+ *
+ * Найти такое слово в первом предложении,
+ * которого нет ни в одном из остальных предложений.
+ *
+ * <p>Listen for sentences by method {@link #listen(com.godzynskyi.strings.Sentence sentence)}. <br>
+ * After that one of the unique words would be returned by method {@link #getUniqueWordFromFirstSentence()}
+ *
  */
 public class TaskService {
-    private static TaskService instance = new TaskService();
     private boolean firstSentence = true;
     private Set<Word> uniqueWordsFromFirstSentence = new HashSet<Word>();
-
-    private TaskService() {}
-
-    public static TaskService getInstance() {
-        return instance;
-    }
-
 
     /**
      * Create <tt>Set</tt> of words from first sentence.
      * Removes words from this <tt>Set</tt> when anyone appears in other sentences.
      *
-     * One of the unique words would be returned by method {@link #getUniqueWordFromFirstSentence()} .
+     * One of the unique words would be returned by method {@link #getUniqueWordFromFirstSentence()}
      *
      * @param sentence sentence for handling
      */
@@ -36,8 +35,10 @@ public class TaskService {
         }
         // Other sentences
         else {
-            for (Word w: sentence.words) {
-                uniqueWordsFromFirstSentence.remove(w);
+            if (!uniqueWordsFromFirstSentence.isEmpty()) {
+                for (Word w : sentence.words) {
+                    uniqueWordsFromFirstSentence.remove(w);
+                }
             }
         }
     }

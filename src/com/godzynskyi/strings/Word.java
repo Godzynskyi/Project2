@@ -1,7 +1,7 @@
 package com.godzynskyi.strings;
 
 /**
- * Created by Java Developer on 07.12.2015.
+ * Entity class defines Word of sentence.
  */
 public class Word{
     String word;

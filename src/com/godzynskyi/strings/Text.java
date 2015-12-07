@@ -4,23 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Java Developer on 07.12.2015.
+ * This entity class defines text and parse it to Sentences {@link }
  */
 public class Text {
-    String text;
 
     List<Sentence> sentences = new ArrayList<Sentence>();
 
     public Text(String text) {
-        this.text = text;
-        parseToSentences();
+        parseToSentences(text);
     }
 
-    public void parseToSentences() {
+    private void parseToSentences(String text) {
         String[] sents = text.split("[.?!]\\s+");
         for (String s : sents) {
             sentences.add(new Sentence(s));
         }
     }
 
+    public List<Sentence> getSentences() {
+        return sentences;
+    }
 }

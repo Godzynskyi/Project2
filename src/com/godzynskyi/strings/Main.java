@@ -1,7 +1,7 @@
 package com.godzynskyi.strings;
 
 /**
- * Created by Java Developer on 07.12.2015.
+ * Point of entry to program.
  */
 public class Main {
     public static void main(String[] args) {
@@ -16,7 +16,11 @@ public class Main {
                 "        return true;\n" +
                 "    }";
         Text text = new Text(s);
-        System.out.println(TaskService.getInstance().getUniqueWordFromFirstSentence());
+        TaskService taskService = new TaskService();
+        for (Sentence sentences: text.getSentences()) {
+            taskService.listen(sentences);
+        }
+        System.out.println(taskService.getUniqueWordFromFirstSentence());
 
     }
 }

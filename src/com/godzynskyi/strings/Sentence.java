@@ -4,20 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Java Developer on 07.12.2015.
+ * Entity class defines Sentence of a text.
  */
 public class Sentence {
-    String sentence;
-
     List<Word> words = new ArrayList<Word>();
 
     public Sentence(String sentence) {
-        this.sentence = sentence;
-        parseSentence();
-        TaskService.getInstance().listen(this);
+        parseToWords(sentence);
     }
 
-    public void parseSentence() {
+    private void parseToWords(String sentence) {
         String[] wordsString = sentence.split("\\W+");
 
         for (String s: wordsString) {
