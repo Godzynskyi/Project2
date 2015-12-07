@@ -14,7 +14,7 @@ import java.util.Set;
  * After that one of the unique words would be returned by method {@link #getUniqueWordFromFirstSentence()}
  *
  */
-public class TaskService {
+public class UniqueWordFromFirstSentenceService {
     private boolean firstSentence = true;
     private Set<Word> uniqueWordsFromFirstSentence = new HashSet<Word>();
 
@@ -26,7 +26,7 @@ public class TaskService {
      *
      * @param sentence sentence for handling
      */
-    public void listen(Sentence sentence) {
+    void listen(Sentence sentence) {
         if (firstSentence) {
             firstSentence = false;
             for (Word w: sentence.getWords()) {
@@ -49,10 +49,22 @@ public class TaskService {
      * @return one of the unique words from first sentence <br>
      *      or <tt>null</tt> if there no words.
      */
-    public String getUniqueWordFromFirstSentence() {
+    String getUniqueWordFromFirstSentence() {
         for (Word res: uniqueWordsFromFirstSentence) {
             return res.getWord();
         }
         return null;
+    }
+
+    /**
+     * Returns word from first sentence of the text, that doesn't appear in other sentences.
+     *
+     * @return unique word from first sentence
+     */
+    public String getUniqueWordFromFirstSentence(Text text) {
+        for (Sentence sentences: text.getSentences()) {
+            listen(sentences);
+        }
+        return getUniqueWordFromFirstSentence();
     }
 }

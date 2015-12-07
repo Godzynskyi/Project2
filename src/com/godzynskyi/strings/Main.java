@@ -16,11 +16,9 @@ public class Main {
                 "        return true;\n" +
                 "    }";
         Text text = new Text(s);
-        TaskService taskService = new TaskService();
-        for (Sentence sentences: text.getSentences()) {
-            taskService.listen(sentences);
-        }
-        System.out.println(taskService.getUniqueWordFromFirstSentence());
+
+        UniqueWordFromFirstSentenceService service = new UniqueWordFromFirstSentenceService();
+        System.out.println(service.getUniqueWordFromFirstSentence(text));
 
     }
 }
