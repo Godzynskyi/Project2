@@ -18,7 +18,6 @@ public class Sentence {
     }
 
     public void parseSentence() {
-//        String[] wordsString = sentence.split("[,;]?(\\s*-*\\s+)");
         String[] wordsString = sentence.split("\\W+");
 
         for (String s: wordsString) {
